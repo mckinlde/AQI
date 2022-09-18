@@ -1,0 +1,221 @@
+                          |
+| Jefferson    | 31   | 20210228 | 16   | PM25      | 24hour             | GOOD                           |
+| King         | 33   | 20210228 | 42   | PM25      | 24hour             | GOOD                           |
+| Kitsap       | 35   | 20210228 | 23   | PM25      | 24hour             | GOOD                           |
+| Kittitas     | 37   | 20210228 | 6    | PM25      | 24hour             | GOOD                           |
+| Lewis        | 41   | 20210228 | 28   | PM25      | 24hour             | GOOD                           |
+| Mason        | 45   | 20210228 | 14   | PM25      | 24hour             | GOOD                           |
+| Okanogan     | 47   | 20210228 | 41   | PM25      | 24hour             | GOOD                           |
+| Pend Oreille | 51   | 20210228 | 43   | PM25      | 24hour             | GOOD                           |
+| Pierce       | 53   | 20210228 | 42   | O3        | 8hrRunAvgBeginHour | GOOD                           |
+| Snohomish    | 61   | 20210228 | 20   | PM25      | 24hour             | GOOD                           |
+| Spokane      | 63   | 20210228 | 16   | PM25      | 24hour             | GOOD                           |
+| Stevens      | 65   | 20210228 | 36   | PM25      | 24hour             | GOOD                           |
+| Thurston     | 67   | 20210228 | 20   | PM25      | 24hour             | GOOD                           |
+| Walla Walla  | 71   | 20210228 | 11   | PM25      | 24hour             | GOOD                           |
+| Whatcom      | 73   | 20210228 | 0    | SO2       | 1hour              | GOOD                           |
+| Whitman      | 75   | 20210228 | 15   | PM25      | 24hour             | GOOD                           |
+| Yakima       | 77   | 20210228 | 28   | PM25      | 24hour             | GOOD                           |
++--------------+------+----------+------+-----------+--------------------+--------------------------------+
+194197 rows in set (0.19 sec)
+
+mysql> COUNT(DISTINCT(County)))
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COUNT(DISTINCT(County)))' at line 1
+mysql> Select from AQI_INDEX COUNT(DISTINCT(County)));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from AQI_INDEX COUNT(DISTINCT(County)))' at line 1
+mysql> select count(distinct(County)) from AQI_INDEX;
++-------------------------+
+| count(distinct(County)) |
++-------------------------+
+|                      33 |
++-------------------------+
+1 row in set (0.19 sec)
+
+mysql> select distinct(County) from AQI_INDEX;
++--------------+
+| County       |
++--------------+
+| Adams        |
+| Asotin       |
+| Benton       |
+| Chelan       |
+| Clallam      |
+| Clark        |
+| Cowlitz      |
+| Jefferson    |
+| King         |
+| Kittitas     |
+| Lewis        |
+| Pierce       |
+| Skagit       |
+| Snohomish    |
+| Spokane      |
+| Stevens      |
+| Thurston     |
+| Walla Walla  |
+| Whatcom      |
+| Whitman      |
+| Yakima       |
+| Klickitat    |
+| Okanogan     |
+| Mason        |
+| Kitsap       |
+| Grays Harbor |
+| Skamania     |
+| Franklin     |
+| Grant        |
+| Columbia     |
+| Pend Oreille |
+| Garfield     |
+| San Juan     |
++--------------+
+33 rows in set (0.24 sec)
+
+mysql> select * from AQI_INDEX limit 10;
++-----------+------+----------+-----+-----------+---------------+-------------+
+| County    | FIPS | Date     | AQI | Pollutant | AveragingTime | AQICategory |
++-----------+------+----------+-----+-----------+---------------+-------------+
+| Adams     | 1    | 20010101 | 23  | PM25      | 24hour        | GOOD        |
+| Asotin    | 3    | 20010101 | 19  | PM10      | 24hour        | GOOD        |
+| Benton    | 5    | 20010101 | 56  | PM25      | 24hour        | MODERATE    |
+| Chelan    | 7    | 20010101 | 23  | PM10      | 24hour        | GOOD        |
+| Clallam   | 9    | 20010101 | 59  | PM25      | 24hour        | MODERATE    |
+| Clark     | 11   | 20010101 | 67  | PM25      | 24hour        | MODERATE    |
+| Cowlitz   | 15   | 20010101 | 17  | PM10      | 24hour        | GOOD        |
+| Jefferson | 31   | 20010101 | 61  | PM25      | 24hour        | MODERATE    |
+| King      | 33   | 20010101 | 93  | PM25      | 24hour        | MODERATE    |
+| Kittitas  | 37   | 20010101 | 14  | PM10      | 24hour        | GOOD        |
++-----------+------+----------+-----+-----------+---------------+-------------+
+10 rows in set (0.01 sec)
+
+mysql> select count(distinct(FIPS)) from AQI_INDEX
+    -> ;
++-----------------------+
+| count(distinct(FIPS)) |
++-----------------------+
+|                    33 |
++-----------------------+
+1 row in set (0.10 sec)
+
+mysql> select distinct(FIPS) from AQI_INDEX;
++------+
+| FIPS |
++------+
+| 1    |
+| 3    |
+| 5    |
+| 7    |
+| 9    |
+| 11   |
+| 15   |
+| 31   |
+| 33   |
+| 37   |
+| 41   |
+| 53   |
+| 57   |
+| 61   |
+| 63   |
+| 65   |
+| 67   |
+| 71   |
+| 73   |
+| 75   |
+| 77   |
+| 39   |
+| 47   |
+| 45   |
+| 35   |
+| 27   |
+| 59   |
+| 21   |
+| 25   |
+| 13   |
+| 51   |
+| 23   |
+| 55   |
++------+
+33 rows in set (0.16 sec)
+
+mysql> select distinct(FIPS) from AQI_INDEX SORT ASCENDING;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASCENDING' at line 1
+mysql> select distinct(FIPS) from AQI_INDEX order by FIPS ASC;
++------+
+| FIPS |
++------+
+| 1    |
+| 11   |
+| 13   |
+| 15   |
+| 21   |
+| 23   |
+| 25   |
+| 27   |
+| 3    |
+| 31   |
+| 33   |
+| 35   |
+| 37   |
+| 39   |
+| 41   |
+| 45   |
+| 47   |
+| 5    |
+| 51   |
+| 53   |
+| 55   |
+| 57   |
+| 59   |
+| 61   |
+| 63   |
+| 65   |
+| 67   |
+| 7    |
+| 71   |
+| 73   |
+| 75   |
+| 77   |
+| 9    |
++------+
+33 rows in set (0.19 sec)
+
+mysql> select distinct(FIPS) from AQI_INDEX order by CAST(FIPS AS UNSIGNED) ASC;
++------+
+| FIPS |
++------+
+| 1    |
+| 3    |
+| 5    |
+| 7    |
+| 9    |
+| 11   |
+| 13   |
+| 15   |
+| 21   |
+| 23   |
+| 25   |
+| 27   |
+| 31   |
+| 33   |
+| 35   |
+| 37   |
+| 39   |
+| 41   |
+| 45   |
+| 47   |
+| 51   |
+| 53   |
+| 55   |
+| 57   |
+| 59   |
+| 61   |
+| 63   |
+| 65   |
+| 67   |
+| 71   |
+| 73   |
+| 75   |
+| 77   |
++------+
+33 rows in set (0.19 sec)
